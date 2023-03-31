@@ -5,7 +5,6 @@ export const Photo = styled.Image`
     aspect-ratio: 1/1;
     background: #333;
     border-radius: 3px;
-    border: 2px #ddd;
 `;
 
 export const Container = styled.View`

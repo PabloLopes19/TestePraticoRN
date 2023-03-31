@@ -44,35 +44,37 @@ export default function Form({ navigation }) {
         return true;
     }
 
+    const body = {
+        nomeEvento: eventName,
+        webSite: webSite,
+        data: "2023-05-31T01:18:27.950Z",
+        numeroMaxCandidato: candidates,
+        endereco: {
+            logradouro: endress.logradouro,
+            bairro: endress.bairro,
+            cidade: endress.localidade,
+            complemento: "",
+            numero: "153",
+            uf: endress.uf,
+            cep,
+        },
+        imageUrl: "https://teste.png"
+    };
+
     function handleSubmitData() {
-        axios.post("https://extranet.cebraspe.org.br/AvaliacaoCSA/BackEnd/",
-            {
-                data: {
-                    nomeEvento: eventName,
-                    webSite: webSite,
-                    data: "2023-03-30T13:25:57.266Z",
-                    numeroMaxCandidato: Number(candidates),
-                    endereco: endress,
-                    imageUrl: image
-                }
-            }
+        axios.post(
+            "https://extranet.cebraspe.org.br/AvaliacaoCSA/BackEnd/",
+            body,
         )
         .then(res => {
             alert("Evento criado!");
             console.log(res.data);
         })
         .catch(err => {
-            console.log({
-                nomeEvento: eventName,
-                webSite: webSite,
-                data: "2023-03-30T13:25:57.266Z",
-                numeroMaxCandidato: candidates,
-                endereco: endress,
-                imageUrl: image
-            })
+            console.log(body);
 
             alert("Não foi possível criar o evento tente novamente mais tarde!");
-            console.log(err)
+            console.log(err);
         });
     }
 
@@ -113,22 +115,6 @@ export default function Form({ navigation }) {
                 />
 
                 <s.Row>
-                    {/* <Input 
-                        label="Data*"
-                        placeholder="Ex:. 19/02/2003"
-                    /> */}
-                    {/* <s.DateContainer>
-                        <s.label>Data</s.label>
-
-                        <DateTimePicker
-                            testID="dateTimePicker"
-                            value={new Date(Date.now())}
-                            mode={mode}
-                            is24Hour={true}
-                            onChange={() => {}}
-                        />
-                    </s.DateContainer> */}
-
                     <Input 
                         label="Qnt. de candidatos*"
                         placeholder="Ex:. 42"
